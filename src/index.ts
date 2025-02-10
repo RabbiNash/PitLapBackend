@@ -7,6 +7,8 @@ import cors from 'cors';
 import mongoose, { mongo } from 'mongoose';
 import router from './router';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from '../swagger/swagger.config'; 
 
 const app = express();
 
@@ -19,6 +21,7 @@ app.use(cookieparser());
 app.use(bodyParser.json());
 
 const server = http.createServer(app);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 server.listen(3000, () => {
     console.log('Server is running on port 3000');
