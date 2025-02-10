@@ -1,23 +1,18 @@
-import express from 'express';
+import { Request, Response } from 'express';
+import { getStandings as fetchStandings } from '../db/standings/driverStandings.model';
 
-import { getStandings } from '../db/driverStandings.model';
-
-export const getDriverStandings = async (req: express.Request, res: express.Response) => {
+export const getDriverStandings = async (req: Request, res: Response): Promise<void> => {
     try {
-        const standings = await getStandings();
-        if (standings.length === 0) {
-            res.json({ message: 'No standings found' }).status(404).end();
+        const standings = await fetchStandings();
+
+        if (!standings.length) {
+            res.status(404).json({ success: false, message: 'No standings found' });
             return;
         }
 
-        res.json({
-            'success': true,
-            'data' : standings
-        }).status(200).end();
+        res.status(200).json({ success: true, data: standings });
     } catch (error) {
-        console.error(error);
-        res.json({
-            message: 'Internal server error'
-        }).status(500).end();
+        console.error('Error fetching driver standings:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };

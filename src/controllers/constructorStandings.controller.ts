@@ -1,29 +1,18 @@
-import express from 'express';
+import { Request, Response } from 'express';
+import { getStandings as fetchStandings } from '../db/standings/constructorStandings.model';
 
-import { getStandings } from '../db/constructorStandings.model';
-
-export const getConstructorStandings = async (req: express.Request, res: express.Response) => {
+export const getConstructorStandings = async (req: Request, res: Response): Promise<void> => {
     try {
-        const standings = await getStandings();
+        const standings = await fetchStandings();
 
-        if (standings.length === 0) {
-            res.status(404);
-            res.json({
-                message: 'No standings found'
-            });
+        if (!standings.length) {
+            res.status(404).json({ success: false, message: 'No standings found' });
             return;
         }
-    
-        res.json({
-            'success': true,
-            'data' : standings
-        }).status(200).end();
 
+        res.status(200).json({ success: true, data: standings });
     } catch (error) {
-        console.error(error);
-        res.status(500);
-        res.json({
-            message: 'Internal server error'
-        });
+        console.error('Error fetching constructor standings:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
