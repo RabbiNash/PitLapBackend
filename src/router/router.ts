@@ -13,6 +13,8 @@ export const appRouter = (router: express.Router) => {
      *   get:
      *     summary: Retrieve the driver standings
      *     description: Get the list of driver standings including position, points, wins, etc.
+     *     tags:
+     *       - Standings
      *     responses:
      *       200:
      *         description: Successfully retrieved the standings.
@@ -70,6 +72,8 @@ router.get('/standings/driver', getDriverStandings);
      *   get:
      *     summary: Get the constructor standings.
      *     description: Retrieve the current constructor standings, including position, points, etc.
+     *     tags:
+     *       - Standings
      *     responses:
      *       200:
      *         description: Successfully retrieved the standings.
@@ -111,6 +115,8 @@ router.get('/standings/driver', getDriverStandings);
      *   get:
      *     summary: Get the theoretical driver standings.
      *     description: Retrieve the theoretical driver standings, including position, points, etc.
+     *     tags:
+     *       - Standings
      *     responses:
      *       200:
      *         description: Successfully retrieved the standings.
@@ -150,6 +156,8 @@ router.get('/standings/driver', getDriverStandings);
      *   get:
      *     summary: Retrieve the race schedule for a given year
      *     description: Get the list of race weekends for a specific year, including sessions and race results.
+     *     tags:
+     *       - Schedule
      *     parameters:
      *       - in: path
      *         name: year
