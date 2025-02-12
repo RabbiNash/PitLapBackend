@@ -28,6 +28,7 @@ jobs:
         npm run build --if-present
         touch .env
         echo "${{ secrets.PROD_ENV_FILE }}" > .env
+        cat .env  # Debugging: Print contents to verify
         
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.1
