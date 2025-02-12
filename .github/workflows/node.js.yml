@@ -1,4 +1,4 @@
-name: NodeJS with Grunt
+name: NodeJS CI/CD
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -24,5 +24,8 @@ jobs:
 
     - name: Build
       run: |
-        npm install
-        grunt
+        npm ci
+        npm run build --if-present
+        npm test --if-present
+        touch .env
+        echo "${{ secrets.PROD_ENV_FILE }}" > .env
