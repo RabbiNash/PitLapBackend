@@ -34,7 +34,7 @@ jobs:
       with:
         switches: -avzr --delete --include='.env' --exclude='.git*'
         path: ./*
-        remote_path: /var/www/my-app/
+        remote_path: /var/www/pitlap/
         remote_host: "${{ secrets.PITLAP_HOST }}"
         remote_user: ubuntu
         remote_key: "${{ secrets.PITLAP_SSH }}"
