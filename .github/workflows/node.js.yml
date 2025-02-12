@@ -33,7 +33,7 @@ jobs:
     - name: rsync deployments
       uses: burnett01/rsync-deployments@7.0.2
       with:
-        switches: -avzr --delete --include='.env' --exclude='.git*
+        switches: -avzr --delete --include='.env' --exclude='.git*'
         path: ./*
         remote_path: /var/www/my-app/
         remote_host: ec2-13-49-170-200.eu-north-1.compute.amazonaws.com
