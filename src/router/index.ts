@@ -1,10 +1,14 @@
 import express from "express";
 
-import { appRouter } from "./router";
+import { summaryRouter } from "./routes/summary.route";
+import { standingsRouter } from "./routes/standings.route";
+import { scheduleRouter } from "./routes/schedule.route";
 
 const router = express.Router();
 
 export default (): express.Router => {
-    appRouter(router);
+    summaryRouter(router);
+    standingsRouter(router);
+    scheduleRouter(router);
     return router;
 };
