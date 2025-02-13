@@ -1,20 +1,12 @@
 import { Request, Response } from 'express';
-import { getScheduleByYear as fetchSchedule } from '../../db/schedule/raceweekend.model';
+import { getScheduleByYear as fetchScheduleByYear } from '../../db/schedule/raceweekend.model';
+import { getSchedule as fetchSchedule } from '../../db/schedule/raceweekend.model';
+import { handleGetRequest } from '../../helpers/handleGetRequest';
 
 export const getScheduleByYear = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { year } = req.params;
+    await handleGetRequest(fetchScheduleByYear, 'No Schedule found', 'Error fetching driver standings', res);
+};
 
-        const schedule = await fetchSchedule(year);
-
-        if (!schedule.length) {
-            res.status(404).json({ success: false, message: 'No Schedule found' });
-            return;
-        }
-
-        res.status(200).json({ success: true, data: schedule });
-    } catch (error) {
-        console.error('Error fetching constructor standings:', error);
-        res.status(500).json({ success: false, message: 'Internal server error' });
-    }
+export const getSchedule = async (req: Request, res: Response): Promise<void> => {
+    await handleGetRequest(fetchSchedule, 'No standings found', 'Error fetching driver standings', res);
 };

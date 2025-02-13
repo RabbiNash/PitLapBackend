@@ -1,5 +1,4 @@
 // swagger.config.ts
-
 import swaggerJSDoc from 'swagger-jsdoc';
 
 const swaggerOptions = {
@@ -16,7 +15,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ['./src/router/*.ts'],
+    apis: ['./src/router/routes/*.ts'],
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);

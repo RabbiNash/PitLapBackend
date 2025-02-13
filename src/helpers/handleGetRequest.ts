@@ -21,7 +21,7 @@ export const handleGetRequest = async (
             return;
         }
 
-        res.status(200).json({ success: true, message: successMessage, data });
+        res.status(200).json({ success: true, data });
     } catch (error) {
         console.error(errorMessage, error);
         res.status(500).json({ success: false, message: 'Internal server error' });

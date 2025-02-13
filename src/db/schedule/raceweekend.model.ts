@@ -51,21 +51,25 @@ const RaceWeekendSchema = new Schema<IRaceWeekend>({
     eventName: { type: String, required: true },
     eventFormat: { type: String, required: true },
     year: { type: String, required: true, index: true },
-    session1: { type: String, required: true },
-    session1DateUtc: { type: String, required: true },
-    session2: { type: String, required: true },
-    session2DateUtc: { type: String, required: true },
-    session3: { type: String, required: true },
-    session3DateUtc: { type: String, required: true },
-    session4: { type: String, required: true },
-    session4DateUtc: { type: String, required: true },
-    session5: { type: String, required: true },
-    session5DateUtc: { type: String, required: true },
-    results: { type: [RaceResultSchema], required: true },
+    session1: { type: String, required: false },
+    session1DateUtc: { type: String, required: false },
+    session2: { type: String, required: false },
+    session2DateUtc: { type: String, required: false },
+    session3: { type: String, required: false },
+    session3DateUtc: { type: String, required: false },
+    session4: { type: String, required: false },
+    session4DateUtc: { type: String, required: false },
+    session5: { type: String, required: false },
+    session5DateUtc: { type: String, required: false },
+    results: { type: [RaceResultSchema], required: false },
 }, { collection: "schedule" });
 
 export const RaceWeekendModel = mongoose.model<IRaceWeekend>("RaceWeekend", RaceWeekendSchema);
 
 export const getScheduleByYear = async (year: string) => {
     return RaceWeekendModel.find({ year }).exec();
+};
+
+export const getSchedule = async () => {
+    return RaceWeekendModel.find().exec();
 };

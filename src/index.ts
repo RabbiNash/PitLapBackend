@@ -1,4 +1,5 @@
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import http from 'http';
 import bodyParser from 'body-parser';
 import compression from 'compression';
