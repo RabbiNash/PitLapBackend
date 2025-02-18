@@ -29,6 +29,8 @@ interface IRaceWeekend extends Document {
     session4DateUtc: string;
     session5: string;
     session5DateUtc: string;
+    latitude: number;
+    longitude: number;
     results: IRaceResult[];
 }
 
@@ -61,6 +63,8 @@ const RaceWeekendSchema = new Schema<IRaceWeekend>({
     session4DateUtc: { type: String, required: false },
     session5: { type: String, required: false },
     session5DateUtc: { type: String, required: false },
+    latitude: { type: Number, required: false },
+    longitude: { type: Number, required: false },
     results: { type: [RaceResultSchema], required: false },
 }, { collection: "schedule" });
 
@@ -72,4 +76,8 @@ export const getScheduleByYear = async (year: string) => {
 
 export const getSchedule = async () => {
     return RaceWeekendModel.find().exec();
+};
+
+export const getScheduleByYearAndRound = async (year: string, round: number) => {
+    return RaceWeekendModel.findOne({ year, round }).exec();
 };
