@@ -30,6 +30,7 @@ jobs:
         echo '${{ secrets.PITLAP_ENV }}' >> dist/src/.env
         echo '${{ secrets.PERPLEXITY_API_KEY }}' >> dist/src/.env
         echo '${{ secrets.WEATHER_API_KEY }}' >> dist/src/.env
+        echo '${{ secrets.YT_DATA_API_KEY }}' >> dist/src/.env
 
     - name: rsync deployments
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'  # Only run deployment on push to main
