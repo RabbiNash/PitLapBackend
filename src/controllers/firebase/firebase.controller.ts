@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const serviceAccount = JSON.parse(
-  readFileSync(process.env.FIR_SERVICE_ACCOUNT, "utf8")
+  readFileSync(process.env.FIR_SERVICE_ACCOUNT_URL, "utf8")
 );
 
 admin.initializeApp({
