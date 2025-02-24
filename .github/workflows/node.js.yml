@@ -31,6 +31,8 @@ jobs:
         echo '${{ secrets.PERPLEXITY_API_KEY }}' >> dist/src/.env
         echo '${{ secrets.WEATHER_API_KEY }}' >> dist/src/.env
         echo '${{ secrets.YT_DATA_API_KEY }}' >> dist/src/.env
+        echo '${{ secrets.FIR_SERVICE_ACCOUNT }}' >> dist/src/pitlap_fir.json
+        echo '${{ secrets.FIR_SERVICE_ACCOUNT_URL }}' >> dist/src/.env
 
     - name: rsync deployments
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'  # Only run deployment on push to main

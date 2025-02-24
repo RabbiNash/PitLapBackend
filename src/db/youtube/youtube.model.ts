@@ -1,6 +1,4 @@
-import { Mode } from "fs";
 import mongoose, { Document , Schema, Model } from "mongoose";
-import { title } from "process";
 
 interface IYoutubeThumbnail {
     url: string;
@@ -93,26 +91,25 @@ export const getVideosByChannelId = (channelId: string) => {
 export const getVideosByChannelTitle = (channelTitle: string) => {
     return YoutubeModel.find({ channelTitle })
         .collation({ locale: 'en', strength: 2 })
+        .sort({ publishedAt: -1 })
         .exec();
-}
+};
 
-export const upsertVideos = (videos: IYoutubeVideo[]) => {
-    const bulkOps = videos.map(video => ({
-      updateOne: {
-        filter: { "resourceId.videoId": video.resourceId.videoId },
-        update: {
-          $set: { ...video, updatedAt: new Date().toISOString() },
-          $setOnInsert: { createdAt: new Date().toISOString() }
-        },
-        upsert: true,
-        timestamps: false
-      }
+export const replaceVideos = async (videos: IYoutubeVideo[]) => {
+    const videoIds = videos.map(video => video.resourceId.videoId);
+
+    await YoutubeModel.deleteMany({ "resourceId.videoId": { $in: videoIds } });
+
+    const currentDate = new Date().toISOString();
+    const videosWithTimestamps = videos.map(video => ({
+        ...video,
+        createdAt: currentDate,
+        updatedAt: currentDate
     }));
-  
-    return YoutubeModel.bulkWrite(bulkOps);
-  }
-  
 
+    return YoutubeModel.insertMany(videosWithTimestamps);
+};
+  
 export const getYoutubeChannels = () => YoutubeChannelModel.find()
 export const getYoutubeChannelByTitle = (channelTitle: string) => {
     return YoutubeChannelModel.find({
