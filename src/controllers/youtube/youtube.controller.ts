@@ -5,7 +5,7 @@ import moment from 'moment';
 import {
   getYoutubeChannelByTitle,
   getVideosByChannelTitle,
-  upsertVideos,
+  replaceVideos,
   IYoutubeVideo
 } from '../../db/youtube/youtube.model';
 
@@ -46,7 +46,7 @@ export const fetchYoutubeVideos = async (req: Request, res: Response): Promise<R
 
     let videos = await getVideosByChannelTitle(channelTitle);
 
-    if (videos.length === 0 || moment().diff(videos[0].updatedAt, 'hours') >= 3) {
+    if (videos.length === 0 || moment().diff(videos[0].updatedAt, 'seconds') >= 10) {
       const apiResponse = await axios.get<IYoutubeApiResponse>(BASE_URL, {
         params: {
           part: "snippet",
@@ -64,8 +64,7 @@ export const fetchYoutubeVideos = async (req: Request, res: Response): Promise<R
       }
 
       const youtubeVideos = apiResponse.data.items.map(item => item.snippet);
-      console.log(youtubeVideos)
-      await upsertVideos(youtubeVideos);
+      await replaceVideos(youtubeVideos);
       
       videos = await getVideosByChannelTitle(channelTitle);
     }
