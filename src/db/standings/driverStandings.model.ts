@@ -26,4 +26,4 @@ const DriverStandingSchema = new Schema<IDriverStanding>({
 
 export const DriverStandingModel = mongoose.model<IDriverStanding>("DriverStanding", DriverStandingSchema);
 
-export const getStandings = () => DriverStandingModel.find().sort({ position: 1 });
+export const getStandings = () => DriverStandingModel.find().sort({ points: -1 });
