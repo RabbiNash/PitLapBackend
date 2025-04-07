@@ -18,10 +18,10 @@ interface ChatRequest {
   search_recency_filter?: string | null;
 }
 
-export const summariseWeatherInfo = async (
+export const getPerplexitySummary = async (
   question: string,
-  apiKey: string = process.env.PERPLEXITY_API_KEY || '',
   systemPrompt: string = "Be precise and concise. i need only 10 words describing the weather, be witty and fun and also include the name of the city",
+  apiKey: string = process.env.PERPLEXITY_API_KEY || '',
   apiUrl: string = 'https://api.perplexity.ai/chat/completions'
 ): Promise<any> => {
   const messages: Message[] = [

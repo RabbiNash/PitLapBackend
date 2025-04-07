@@ -5,10 +5,10 @@ import {
     upsertWeather,
     IWeatherDocument,
     IWeatherBase
-} from '../../db/weather/weather.model';
-import { getScheduleByYearAndRound } from '../../db/schedule/raceweekend.model';
+} from '../../models/weather/weather.model';
+import { getScheduleByYearAndRound } from '../../models/schedule/race-weekend.model';
 import dotenv from 'dotenv';
-import { summariseWeatherInfo } from '../../controllers/ai/perplexityController';
+import { getPerplexitySummary as summariseWeatherInfo } from '../perplexity/perplexity.controller';
 
 dotenv.config();
 

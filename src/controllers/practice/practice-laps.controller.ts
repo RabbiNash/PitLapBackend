@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getPracticeLapsByYearRoundAndEventName } from '../../db/practice/practicelaps.model';
+import { getPracticeLapsByYearRoundAndEventName } from '../../models/practice/practice-laps.model';
 
 export const fetchPracticeLapsByYearRoundAndEventName = async (req: Request, res: Response): Promise<void> => {
     try {

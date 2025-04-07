@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getSessionWeatherSummary } from '../../controllers/weather/weatherController';
+import { getSessionWeatherSummary } from '../../controllers/weather/weather.controller';
 
 export const weatherRouter = (router: express.Router) => {
     router.get(

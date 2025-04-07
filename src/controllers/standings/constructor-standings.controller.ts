@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getStandings as fetchStandings } from '../../db/standings/constructorStandings.model';
+import { getStandings as fetchStandings } from '../../models/standings/constructor-standings.model';
 
 export const getConstructorStandings = async (req: Request, res: Response): Promise<void> => {
     try {

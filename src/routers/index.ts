@@ -7,6 +7,7 @@ import { qualiRouter } from "./routes/quali.route";
 import { practiceRouter } from "./routes/practice.route";
 import { weatherRouter } from "./routes/weather.route";
 import { youtubeRouter } from "./routes/youtube/youtube.route";
+import { raceResultRouter } from "./routes/race/race-result.route";
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ export default (): express.Router => {
     practiceRouter(router);
     weatherRouter(router);
     youtubeRouter(router);
+    raceResultRouter(router);
     return router;
 };

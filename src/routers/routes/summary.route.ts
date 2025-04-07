@@ -1,15 +1,16 @@
 import express from 'express';
 
-import { getQualiResultsByYearAndRound } from '../../controllers/qualifiers/qualiresults.controller';
+import { getRaceSummaryByYearAndRound } from '../../controllers/race/summary/race-summary.controller';
+import { getTrackSummary } from '../../controllers/race/summary/track-summary.controller';
 
-export const qualiRouter = (router: express.Router) => {
+export const summaryRouter = (router: express.Router) => {
     
    /**
      * @swagger
-     * /quali/convectional/{year}/{round}:
+     * /summary/race/{year}/{round}:
      *   get:
-     *     summary: Get the results of a quali session
-     *     description: Retrieves the results of a quali session by year and round.
+     *     summary: Get the summary of each race by year and round.
+     *     description: Retrieves the summary of races by year and round.
      *     tags:
      *       - Summary
      *     parameters:
@@ -55,31 +56,24 @@ export const qualiRouter = (router: express.Router) => {
      *       500:
      *         description: Internal server error.
      */
-    router.get('/quali/convectional/:year/:round', getQualiResultsByYearAndRound);
+    router.get('/summary/race/:year/:round', getRaceSummaryByYearAndRound);
 
    /**
      * @swagger
-     * /quali/convectional/{year}/{round}:
+     * /summary/track/{trackName}:
      *   get:
-     *     summary: Get the results of a quali session
-     *     description: Retrieves the results of a quali session by year and round.
+     *     summary: Get the track summary and facts.
+     *     description: Retrieves the summary of races by year and round.
      *     tags:
      *       - Summary
      *     parameters:
      *       - in: path
-     *         name: year
+     *         name: trackName
      *         required: true
      *         description: The year of the race schedule to retrieve.
      *         schema:
      *           type: string
-     *           example: "2024"
-     *       - in: path
-     *         name: round
-     *         required: true
-     *         description: The year of the race schedule to retrieve.
-     *         schema:
-     *           type: string
-     *           example: "1"
+     *           example: "Bahrain"
      *     responses:
      *       200:
      *         description: Successfully retrieved the summary.
@@ -108,7 +102,7 @@ export const qualiRouter = (router: express.Router) => {
      *       500:
      *         description: Internal server error.
      */
-    router.get('/quali/sprint/:year/:round', getQualiResultsByYearAndRound);
+    router.get('/summary/track/:trackName', getTrackSummary);
 
     return router;
 }

@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { getScheduleByYear } from '../../controllers/schedule/raceweekend.controller';
-import { getSchedule } from '../../controllers/schedule/raceweekend.controller';
+import { getScheduleByYear } from '../../controllers/schedule/race-weekend.controller';
+import { getSchedule } from '../../controllers/schedule/race-weekend.controller';
 
 const router = express.Router();
 

@@ -7,7 +7,7 @@ import {
   getVideosByChannelTitle,
   replaceVideos,
   IYoutubeVideo
-} from '../../db/youtube/youtube.model';
+} from '../../models/youtube/youtube.model';
 
 dotenv.config();
 

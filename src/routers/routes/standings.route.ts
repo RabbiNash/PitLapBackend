@@ -1,8 +1,8 @@
 import express from 'express';
 
-import { getDriverStandings } from '../../controllers/standings/driverStandings.controller';
-import { getConstructorStandings } from '../../controllers/standings/constructorStandings.controller';
-import { getTheoreticalDriverStandings } from '../../controllers/standings/theoreticalDriverStandings.controller';
+import { getDriverStandings } from '../../controllers/standings/driver-standings.controller';
+import { getConstructorStandings } from '../../controllers/standings/constructor-standings.controller';
+import { getTheoreticalDriverStandings } from '../../controllers/standings/theoretical-driver-standings.controller';
 
 export const standingsRouter = (router: express.Router) => {
     /**

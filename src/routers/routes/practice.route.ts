@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { fetchPracticeLapsByYearRoundAndEventName } from '../../controllers/practice/practicelaps.controller';
+import { fetchPracticeLapsByYearRoundAndEventName } from '../../controllers/practice/practice-laps.controller';
 
 export const practiceRouter = (router: express.Router) => {
     

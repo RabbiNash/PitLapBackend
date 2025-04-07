@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getTrackSummary as fetchTrackSummary } from '../../../db/race/summary/tracksummary.model';
+import { getTrackSummary as fetchTrackSummary } from '../../../models/race/summary/track-summary.model';
 
 export const getTrackSummary = async (req: Request, res: Response): Promise<void> => {
     try {

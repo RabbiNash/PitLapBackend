@@ -1,12 +1,14 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface IRaceSummary extends Document {
+export interface IRaceSummary {
     key: string;
     round: number;
     name: string;
     year: number;
     summary: string;
 }
+
+export interface IRaceSummaryDocument extends Document, IRaceSummary {}
 
 const RaceSummarySchema = new Schema<IRaceSummary>({
     key: { type: String, required: true, index: true },
@@ -19,4 +21,12 @@ const RaceSummarySchema = new Schema<IRaceSummary>({
 export const RaceSummaryModel = mongoose.model<IRaceSummary>("RaceSummary", RaceSummarySchema);
 export const getRaceSummary = (key: string) => { 
     return RaceSummaryModel.findOne({ key }); 
+}
+
+export const upsertRaceSummary = (summary: IRaceSummary) => {
+    return RaceSummaryModel.updateOne(
+        { year: summary.year, round: summary.round },
+        { $set: summary },
+        { upsert: true }
+    );
 }

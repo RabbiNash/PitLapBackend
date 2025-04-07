@@ -6,7 +6,7 @@ import compression from 'compression';
 import cookieparser from 'cookie-parser';
 import cors from 'cors';
 import mongoose, { mongo } from 'mongoose';
-import router from './router';
+import router from './routers';
 import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from '../swagger/swagger.config'; 

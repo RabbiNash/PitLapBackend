@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { getScheduleByYear as fetchScheduleByYear } from '../../db/schedule/raceweekend.model';
-import { getSchedule as fetchSchedule } from '../../db/schedule/raceweekend.model';
+import { getScheduleByYear as fetchScheduleByYear } from '../../models/schedule/race-weekend.model';
+import { getSchedule as fetchSchedule } from '../../models/schedule/race-weekend.model';
 import { handleGetRequest } from '../../helpers/handleGetRequest';
 
 export const getScheduleByYear = async (req: Request, res: Response): Promise<void> => {
