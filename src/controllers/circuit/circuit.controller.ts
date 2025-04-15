@@ -6,6 +6,7 @@ export const fetchCircuitByName = async (req: Request, res: Response): Promise<v
     try {
         const { name } = req.params;
         const laps = await getCircuitByName(name);
+
         if (!laps) {
             res.status(404).json({ success: false, message: 'No result found' }).end();
             console.error('No result found for', name);
