@@ -7,6 +7,7 @@ import {
     IWeatherBase
 } from '../../models/weather/weather.model';
 import { getScheduleByYearAndRound } from '../../models/schedule/race-weekend.model';
+import { getCircuitByName } from '../../models/circuits/circuits.model';
 import dotenv from 'dotenv';
 import { getPerplexitySummary as summariseWeatherInfo } from '../perplexity/perplexity.controller';
 
@@ -67,11 +68,13 @@ export const getSessionWeatherSummary = async (req: Request, res: Response): Pro
         
         if (!weather) {
             const schedule = await getScheduleByYearAndRound(year, numericRound);
+            const circuit = await getCircuitByName(schedule.eventName);
+            console.log(circuit);
             const sessionDate = schedule.session5DateUtc == "" ? formatDateToShortDate(schedule.session3DateUtc) : formatDateToShortDate(schedule.session5DateUtc);
             const liveWeather = await axios.get<WeatherSummaryResponse>(BASE_URL, {
                 params: {
-                    lat: schedule.latitude,
-                    lon: schedule.longitude,
+                    lat: circuit.location.lat,
+                    lon: circuit.location.lng,
                     date: sessionDate,
                     appid: API_KEY,
                     units: 'metric'

@@ -20,4 +20,6 @@ const ConstructorStandingSchema = new Schema<IConstructorStanding>({
 
 export const ConstructorStandingModel = mongoose.model<IConstructorStanding>("ConstructorStanding", ConstructorStandingSchema);
 
-export const getStandings = () => ConstructorStandingModel.find().sort({ position: 1 });
+export const getStandings = () => {
+    return ConstructorStandingModel.find().sort({ position: 1 });
+}
